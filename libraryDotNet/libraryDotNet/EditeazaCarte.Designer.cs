@@ -41,32 +41,34 @@
             this.textBookID = new System.Windows.Forms.TextBox();
             this.buttonSalveazaCarte = new System.Windows.Forms.Button();
             this.buttonStergeCarte = new System.Windows.Forms.Button();
+            this.textLibere = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textAlteInfo
             // 
-            this.textAlteInfo.Location = new System.Drawing.Point(89, 157);
+            this.textAlteInfo.Location = new System.Drawing.Point(89, 142);
             this.textAlteInfo.Name = "textAlteInfo";
             this.textAlteInfo.Size = new System.Drawing.Size(191, 20);
             this.textAlteInfo.TabIndex = 21;
             // 
             // textTotal
             // 
-            this.textTotal.Location = new System.Drawing.Point(89, 129);
+            this.textTotal.Location = new System.Drawing.Point(89, 90);
             this.textTotal.Name = "textTotal";
             this.textTotal.Size = new System.Drawing.Size(191, 20);
             this.textTotal.TabIndex = 20;
             // 
             // textAutor
             // 
-            this.textAutor.Location = new System.Drawing.Point(89, 100);
+            this.textAutor.Location = new System.Drawing.Point(89, 64);
             this.textAutor.Name = "textAutor";
             this.textAutor.Size = new System.Drawing.Size(191, 20);
             this.textAutor.TabIndex = 19;
             // 
             // textTitlu
             // 
-            this.textTitlu.Location = new System.Drawing.Point(89, 68);
+            this.textTitlu.Location = new System.Drawing.Point(89, 38);
             this.textTitlu.Name = "textTitlu";
             this.textTitlu.Size = new System.Drawing.Size(191, 20);
             this.textTitlu.TabIndex = 18;
@@ -74,7 +76,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 160);
+            this.label5.Location = new System.Drawing.Point(14, 145);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 17;
@@ -83,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 132);
+            this.label4.Location = new System.Drawing.Point(4, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 13);
             this.label4.TabIndex = 16;
@@ -92,7 +94,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 103);
+            this.label3.Location = new System.Drawing.Point(51, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 15;
@@ -101,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 71);
+            this.label2.Location = new System.Drawing.Point(56, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 14;
@@ -110,7 +112,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 37);
+            this.label1.Location = new System.Drawing.Point(41, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 13;
@@ -118,7 +120,7 @@
             // 
             // textBookID
             // 
-            this.textBookID.Location = new System.Drawing.Point(89, 34);
+            this.textBookID.Location = new System.Drawing.Point(89, 12);
             this.textBookID.Name = "textBookID";
             this.textBookID.Size = new System.Drawing.Size(191, 20);
             this.textBookID.TabIndex = 12;
@@ -126,7 +128,7 @@
             // 
             // buttonSalveazaCarte
             // 
-            this.buttonSalveazaCarte.Location = new System.Drawing.Point(409, 34);
+            this.buttonSalveazaCarte.Location = new System.Drawing.Point(322, 20);
             this.buttonSalveazaCarte.Name = "buttonSalveazaCarte";
             this.buttonSalveazaCarte.Size = new System.Drawing.Size(118, 54);
             this.buttonSalveazaCarte.TabIndex = 11;
@@ -136,7 +138,7 @@
             // 
             // buttonStergeCarte
             // 
-            this.buttonStergeCarte.Location = new System.Drawing.Point(409, 119);
+            this.buttonStergeCarte.Location = new System.Drawing.Point(322, 105);
             this.buttonStergeCarte.Name = "buttonStergeCarte";
             this.buttonStergeCarte.Size = new System.Drawing.Size(118, 54);
             this.buttonStergeCarte.TabIndex = 22;
@@ -144,11 +146,29 @@
             this.buttonStergeCarte.UseVisualStyleBackColor = true;
             this.buttonStergeCarte.Click += new System.EventHandler(this.buttonStergeCarte_Click);
             // 
+            // textLibere
+            // 
+            this.textLibere.Location = new System.Drawing.Point(89, 116);
+            this.textLibere.Name = "textLibere";
+            this.textLibere.Size = new System.Drawing.Size(191, 20);
+            this.textLibere.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(-1, 119);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Exemplare libere";
+            // 
             // EditeazaCarte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 205);
+            this.ClientSize = new System.Drawing.Size(515, 194);
+            this.Controls.Add(this.textLibere);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonStergeCarte);
             this.Controls.Add(this.textAlteInfo);
             this.Controls.Add(this.textTotal);
@@ -184,5 +204,7 @@
         private System.Windows.Forms.TextBox textBookID;
         private System.Windows.Forms.Button buttonSalveazaCarte;
         private System.Windows.Forms.Button buttonStergeCarte;
+        private System.Windows.Forms.TextBox textLibere;
+        private System.Windows.Forms.Label label6;
     }
 }

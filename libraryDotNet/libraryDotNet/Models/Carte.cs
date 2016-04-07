@@ -7,10 +7,13 @@ namespace libraryDotNet
 {
     public class Carte
     {
-        public int bookId { get; set; }
-        public string titlu { get; set; }
-        public string autor { get; set; }
-        public int total { get; set; }
-        public int free { get; set; }
+
+        public string entryID { get; set; }
+        public string bookID { get; set; }
+        public string title { get; set; }
+        public string author { get; set; }
+        public string total { get; set; }
+        public string free { get; set; }
+        public string details { get; set; }
     }
 }

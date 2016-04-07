@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Data;
 
 namespace libraryDotNet
 {
@@ -17,19 +16,21 @@ namespace libraryDotNet
         private string title;
         private string author;
         private string exemplare;
+        private string libere;
         private string id;
         private string otherinfo;
-        
+        private DBConnect dbConnect;
 
-        public EditeazaCarte(string s0, string s1, string s2, string s3, string s4)
+        public EditeazaCarte(string GETbookID, string GETtitle, string GETauthor, string GETexemplare, string GETlibere, string GETalteInfo)
         {
             InitializeComponent();
-            bookID = s0;
-            title = s1;
-            author = s2;
-            exemplare = s3;
-            otherinfo = s4;
-
+            bookID = GETbookID;
+            title = GETtitle;
+            author = GETauthor;
+            exemplare = GETexemplare;
+            libere = GETlibere;
+            otherinfo = GETalteInfo;
+            dbConnect = new DBConnect();
             Load += new EventHandler(EditeazaCarte_Load);
         }
 
@@ -39,6 +40,7 @@ namespace libraryDotNet
             textTitlu.Text = title;
             textAutor.Text = author;
             textTotal.Text = exemplare;
+            textLibere.Text = libere;
             textAlteInfo.Text = otherinfo;
 
         }
@@ -53,38 +55,11 @@ namespace libraryDotNet
             if (checkFields() == true)
             {
                 //EDITEAZA CARTE
-                SqlConnectionStringBuilder cstring = new SqlConnectionStringBuilder(global::libraryDotNet.Properties.Settings.Default.librarydotnetConnectionString);
-                cstring.AsynchronousProcessing = true;
-                SqlConnection cn = new SqlConnection(cstring.ConnectionString);
-
-                try
-                {
-                    string sql = "UPDATE books SET bookID = " + textBookID.Text + ", title = '" +
-                                    textTitlu.Text + "', author = '" + textAutor.Text + "', total = " + textTotal.Text + ", free = " + textTotal.Text + ", details = '" +
-                                    textAlteInfo.Text + "' WHERE bookID = " + bookID;
-                    SqlCommand execSql = new SqlCommand(sql, cn);
-                    cn.Open();
-                    execSql.BeginExecuteNonQuery();
-
-                    MessageBox.Show("Salvare reusita!");
-                    textBookID.Text = null;
-                    textTitlu.Text = null;
-                    textAutor.Text = null;
-                    textTotal.Text = null;
-                    textAlteInfo.Text = null;
-                    this.Close();
-                    ModificaCarte modifForm = new ModificaCarte();
-                    modifForm.Show();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    cn.Close();
-                }
+             if( dbConnect.modificaCarte(textBookID.Text,textTitlu.Text,textAutor.Text,textTotal.Text,textLibere.Text, textAlteInfo.Text) == true)
+             {
+                 this.Close();
+             }
+               
             }
             else
             {
@@ -117,36 +92,30 @@ namespace libraryDotNet
 
         private void buttonStergeCarte_Click(object sender, EventArgs e)
         {
-            SqlConnectionStringBuilder cstring = new SqlConnectionStringBuilder(global::libraryDotNet.Properties.Settings.Default.librarydotnetConnectionString);
-            cstring.AsynchronousProcessing = true;
-            SqlConnection cn = new SqlConnection(cstring.ConnectionString);
-
-            try
+            if (textBookID.Text.Length != 7)
             {
-                string sql = "DELETE FROM books WHERE bookID = " + bookID;
-                SqlCommand execSql = new SqlCommand(sql, cn);
-                cn.Open();
-                execSql.BeginExecuteNonQuery();
-
-                MessageBox.Show("Stergere reusita!");
-                textBookID.Text = null;
-                textTitlu.Text = null;
-                textAutor.Text = null;
-                textTotal.Text = null;
-                textAlteInfo.Text = null;
-                this.Close();
-                ModificaCarte modifForm = new ModificaCarte();
-                modifForm.Show();
+                MessageBox.Show("BOOKID-ul trebuie sa fie de fix 7 cifre");
+                
 
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                //sterge
+                DialogResult dialogResult = MessageBox.Show("Esti sigur ca vrei sa stergi cartea?", "Stergere carte", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                   if( dbConnect.StergeCarte(textBookID.Text) == true)
+                   {
+                       this.Close();
+                   }
+                    
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
             }
-            finally
-            {
-                cn.Close();
-            }
+           
         }
     }
 }

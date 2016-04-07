@@ -50,6 +50,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.buttonVeziToateCartile = new System.Windows.Forms.Button();
+            this.buttonVeziToateCartileNereturnate = new System.Windows.Forms.Button();
+            this.buttonVeziAllRents = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cautaCarteGroup.SuspendLayout();
             this.trayIconMenuStrip.SuspendLayout();
@@ -151,16 +154,17 @@
             // 
             // buttonInchiriazaCarte
             // 
-            this.buttonInchiriazaCarte.Location = new System.Drawing.Point(159, 281);
+            this.buttonInchiriazaCarte.Location = new System.Drawing.Point(31, 243);
             this.buttonInchiriazaCarte.Name = "buttonInchiriazaCarte";
             this.buttonInchiriazaCarte.Size = new System.Drawing.Size(169, 71);
             this.buttonInchiriazaCarte.TabIndex = 3;
             this.buttonInchiriazaCarte.Text = "Inchiriza carte";
             this.buttonInchiriazaCarte.UseVisualStyleBackColor = true;
+            this.buttonInchiriazaCarte.Click += new System.EventHandler(this.buttonInchiriazaCarte_Click);
             // 
             // buttonReturneazaCarte
             // 
-            this.buttonReturneazaCarte.Location = new System.Drawing.Point(159, 392);
+            this.buttonReturneazaCarte.Location = new System.Drawing.Point(31, 350);
             this.buttonReturneazaCarte.Name = "buttonReturneazaCarte";
             this.buttonReturneazaCarte.Size = new System.Drawing.Size(169, 71);
             this.buttonReturneazaCarte.TabIndex = 4;
@@ -190,7 +194,7 @@
             // 
             // groupStatistici
             // 
-            this.groupStatistici.Location = new System.Drawing.Point(517, 119);
+            this.groupStatistici.Location = new System.Drawing.Point(357, 243);
             this.groupStatistici.Name = "groupStatistici";
             this.groupStatistici.Size = new System.Drawing.Size(449, 312);
             this.groupStatistici.TabIndex = 7;
@@ -234,11 +238,44 @@
             this.notifyIcon1.Text = "libraryDotNet";
             this.notifyIcon1.Visible = true;
             // 
+            // buttonVeziToateCartile
+            // 
+            this.buttonVeziToateCartile.Location = new System.Drawing.Point(565, 90);
+            this.buttonVeziToateCartile.Name = "buttonVeziToateCartile";
+            this.buttonVeziToateCartile.Size = new System.Drawing.Size(169, 23);
+            this.buttonVeziToateCartile.TabIndex = 8;
+            this.buttonVeziToateCartile.Text = "Vezi toate cartile";
+            this.buttonVeziToateCartile.UseVisualStyleBackColor = true;
+            this.buttonVeziToateCartile.Click += new System.EventHandler(this.buttonVeziToateCartile_Click);
+            // 
+            // buttonVeziToateCartileNereturnate
+            // 
+            this.buttonVeziToateCartileNereturnate.Location = new System.Drawing.Point(797, 90);
+            this.buttonVeziToateCartileNereturnate.Name = "buttonVeziToateCartileNereturnate";
+            this.buttonVeziToateCartileNereturnate.Size = new System.Drawing.Size(169, 23);
+            this.buttonVeziToateCartileNereturnate.TabIndex = 9;
+            this.buttonVeziToateCartileNereturnate.Text = "Vezi toate cartile nereturnate";
+            this.buttonVeziToateCartileNereturnate.UseVisualStyleBackColor = true;
+            this.buttonVeziToateCartileNereturnate.Click += new System.EventHandler(this.buttonVeziToateCartileNereturnate_Click);
+            // 
+            // buttonVeziAllRents
+            // 
+            this.buttonVeziAllRents.Location = new System.Drawing.Point(797, 119);
+            this.buttonVeziAllRents.Name = "buttonVeziAllRents";
+            this.buttonVeziAllRents.Size = new System.Drawing.Size(169, 23);
+            this.buttonVeziAllRents.TabIndex = 10;
+            this.buttonVeziAllRents.Text = "Vezi toate inchirierile";
+            this.buttonVeziAllRents.UseVisualStyleBackColor = true;
+            this.buttonVeziAllRents.Click += new System.EventHandler(this.buttonVeziAllRents_Click);
+            // 
             // controlPanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 587);
+            this.Controls.Add(this.buttonVeziAllRents);
+            this.Controls.Add(this.buttonVeziToateCartileNereturnate);
+            this.Controls.Add(this.buttonVeziToateCartile);
             this.Controls.Add(this.groupStatistici);
             this.Controls.Add(this.buttonModificaCarte);
             this.Controls.Add(this.buttonAdaugaCarte);
@@ -286,6 +323,9 @@
         private System.Windows.Forms.Button buttonCautCarte;
         private System.Windows.Forms.TextBox textID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonVeziToateCartile;
+        private System.Windows.Forms.Button buttonVeziToateCartileNereturnate;
+        private System.Windows.Forms.Button buttonVeziAllRents;
     }
 }
 

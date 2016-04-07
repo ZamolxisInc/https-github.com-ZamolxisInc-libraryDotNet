@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>libraryDotNet</RootNamespace>
     <AssemblyName>libraryDotNet</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -26,6 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,16 +47,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>zamolxisIco.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
-      <HintPath>..\packages\Dapper.1.42\lib\net35\Dapper.dll</HintPath>
+    <Reference Include="MySql.Data">
+      <HintPath>C:\Users\puiu_\Desktop\ConnectCsharpToMysql_Demo\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -76,16 +87,18 @@
     <Compile Include="CautaCarte.Designer.cs">
       <DependentUpon>CautaCarte.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBConnect.cs" />
     <Compile Include="EditeazaCarte.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditeazaCarte.Designer.cs">
       <DependentUpon>EditeazaCarte.cs</DependentUpon>
     </Compile>
-    <Compile Include="librarydotnetDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>librarydotnetDataSet.xsd</DependentUpon>
+    <Compile Include="InchiriazaCarte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InchiriazaCarte.Designer.cs">
+      <DependentUpon>InchiriazaCarte.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Carte.cs" />
     <Compile Include="controlPanelForm.cs">
@@ -109,6 +122,18 @@
     <Compile Include="ReturneazaCarte.Designer.cs">
       <DependentUpon>ReturneazaCarte.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeziInchirieri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeziInchirieri.Designer.cs">
+      <DependentUpon>VeziInchirieri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeziToateInchirierile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeziToateInchirierile.Designer.cs">
+      <DependentUpon>VeziToateInchirierile.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdaugaCarte.resx">
       <DependentUpon>AdaugaCarte.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +146,9 @@
     <EmbeddedResource Include="EditeazaCarte.resx">
       <DependentUpon>EditeazaCarte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InchiriazaCarte.resx">
+      <DependentUpon>InchiriazaCarte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModificaCarte.resx">
       <DependentUpon>ModificaCarte.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,23 +160,19 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ReturneazaCarte.resx">
       <DependentUpon>ReturneazaCarte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VeziInchirieri.resx">
+      <DependentUpon>VeziInchirieri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeziToateInchirierile.resx">
+      <DependentUpon>VeziToateInchirierile.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="librarydotnetDataSet.xsc">
-      <DependentUpon>librarydotnetDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="librarydotnetDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>librarydotnetDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="librarydotnetDataSet.xss">
-      <DependentUpon>librarydotnetDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,13 +185,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BooksDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BooksDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>BooksDB.mdf</DependentUpon>
-    </Content>
     <Content Include="zamolxisIco.ico" />
   </ItemGroup>
   <ItemGroup>

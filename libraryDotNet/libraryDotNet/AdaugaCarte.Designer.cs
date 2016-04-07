@@ -155,6 +155,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adauga Carte";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdaugaCarte_FormClosing);
+            this.Load += new System.EventHandler(this.AdaugaCarte_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

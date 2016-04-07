@@ -6,57 +6,52 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data;
-using System.Data.SqlClient;
+using System.Web;
+using System.Net;
+
 
 namespace libraryDotNet
 {
     public partial class AdaugaCarte : Form
     {
+        private DBConnect dbConnect;
+        public static bool enull = false;
+        public bool salvat = false;
+
+
+
         public AdaugaCarte()
         {
+            dbConnect = new DBConnect();
             InitializeComponent();
         }
 
         private void buttonAdaugaCarte_Click(object sender, EventArgs e)
         {
-            
+
             if (verificaCampuri() == true)
             {
+                //Evita null in baza de date
+                if (textAlteInfo.Text == "")
+                {
+                    textAlteInfo.Text = "Fara detalii";
+                }
                 //ADAUGA CARTE
-                SqlConnectionStringBuilder cstring = new SqlConnectionStringBuilder(global::libraryDotNet.Properties.Settings.Default.librarydotnetConnectionString);
-                cstring.AsynchronousProcessing = true;
-                SqlConnection cn = new SqlConnection(cstring.ConnectionString);
-
-                try
+                if (dbConnect.AdaugaCarte(textBookID.Text, textTitlu.Text, textAutor.Text, textTotal.Text, textAlteInfo.Text) == true)
                 {
-                    string sql = "INSERT INTO books (bookID, title, author, total, free, details) values(" + textBookID.Text + ",'" +
-                                    textTitlu.Text + "','" + textAutor.Text + "'," + textTotal.Text + "," + textTotal.Text + ",'" +
-                                    textAlteInfo.Text + "')";
-                    SqlCommand execSql = new SqlCommand(sql, cn);
-                    cn.Open();
-                    execSql.BeginExecuteNonQuery();
-
-                    MessageBox.Show("Adaugare reusita!");
-                    textBookID.Text = null;
-                    textTitlu.Text = null;
-                    textAutor.Text = null;
-                    textTotal.Text = null;
-                    textAlteInfo.Text = null;
+                    textBookID.Text = textTitlu.Text = textAutor.Text = textTotal.Text = textAlteInfo.Text = string.Empty;
                     this.Close();
-
+                    
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Cartea nu a putut fi adaugata!");
                 }
-                finally
-                {
-                    cn.Close();      
-                }
+                
             }
             else
             {
+                //Nu are sens pentru ca deja avem verificaCampuri care da erorile
                 //MessageBox.Show("A aparut o eroare in validarea campurilor!");
             }
         }
@@ -82,48 +77,30 @@ namespace libraryDotNet
                 return false;
 
             }
-            //else if (maiExistaCartea() == true)
-            //{
-            //    MessageBox.Show("BookID ul este deja existent in baza de date.");
-            //   return false;
-            //}
+            else if (maiExistaCarteaDeja() == true)
+            {
+                MessageBox.Show("BookID ul este deja existent in baza de date.");
+                return false;
+            }
 
 
             return true;
         }
 
-        private bool maiExistaCartea()
+        public bool maiExistaCarteaDeja()
         {
-            SqlConnectionStringBuilder cstring = new SqlConnectionStringBuilder(global::libraryDotNet.Properties.Settings.Default.librarydotnetConnectionString);
-            cstring.AsynchronousProcessing = true;
-            SqlConnection cn = new SqlConnection(cstring.ConnectionString);
 
-            try
+            int count = dbConnect.getBookIDCount(textBookID.Text);
+
+
+            if (count == 0)
             {
-                string sql = "SELECT COUNT(bookID) FROM books (bookID) WHERE  bookID = '" + textBookID.Text + "'";
-                SqlCommand execSql = new SqlCommand(sql, cn);
-                cn.Open();
-
-                SqlDataReader reader = execSql.ExecuteReader();
-                reader.Read();
-                int record = reader.GetInt32(0);    // Weight int
-                if (record.ToString() == textBookID.ToString())
-                {
-                    return true;
-                }
+                return false; ;
             }
-
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                return true;
             }
-            finally
-            {
-                cn.Close();
-            }
-
-
-            return false;
         }
 
         private bool IsInt(string sVal)
@@ -139,22 +116,31 @@ namespace libraryDotNet
 
         private void AdaugaCarte_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            if (textBookID.Text.Length > 0 || textTitlu.Text.Length > 0 || textAutor.Text.Length > 0 || textAlteInfo.Text.Length > 0 || textTotal.Text.Length > 0)
+            if (salvat == false)
             {
-                DialogResult dialogResult = MessageBox.Show("Esti sigur ca vrei sa inchizi? \nToate datele care nu au fost incarcate vor fi pierdute!", "Esti sigur ca vrei sa inchizi?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (textBookID.Text.Length > 0 || textTitlu.Text.Length > 0 || textAutor.Text.Length > 0 || textAlteInfo.Text.Length > 0 || textTotal.Text.Length > 0)
                 {
+                    DialogResult dialogResult = MessageBox.Show("Esti sigur ca vrei sa inchizi? \nToate datele care nu au fost incarcate vor fi pierdute!", "Esti sigur ca vrei sa inchizi?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                    }
 
                 }
-                else if (dialogResult == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-
             }
 
         }
+        private void AdaugaCarte_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
+
+
 }

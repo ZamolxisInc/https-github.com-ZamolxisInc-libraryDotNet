@@ -13,6 +13,7 @@ namespace libraryDotNet
     public partial class controlPanelForm : Form
     {
         public string version = "1.0";
+       
         public controlPanelForm()
         {
             InitializeComponent();
@@ -89,8 +90,16 @@ namespace libraryDotNet
             s1 = textCautaTitlu.Text;
             s2 = textCautaAutor.Text;
             s3 = textID.Text;
-            Form CautaCarteForm = new CautaCarte(s1, s2, s3);
-            CautaCarteForm.Show();
+            if(s1 != "" || s2 != "" || s3 != "")
+            {
+                 CautaCarte cautaCarteFrm = new CautaCarte(s3, s2, s1);
+                 cautaCarteFrm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Parametrii de cautare nu pot fi NULI! \nTe rugam sa completezi casutele de cautare cu datele dorite");
+            }
+           
             
             
         }
@@ -109,6 +118,31 @@ namespace libraryDotNet
             {
                 e.Cancel = true;
             }
+        }
+
+        private void buttonInchiriazaCarte_Click(object sender, EventArgs e)
+        {
+            InchiriazaCarte ic = new InchiriazaCarte();
+            ic.Show();
+        }
+
+        private void buttonVeziToateCartile_Click(object sender, EventArgs e)
+        {
+            CautaCarte cc = new CautaCarte("","","");
+            cc.Show();
+        }
+
+        private void buttonVeziToateCartileNereturnate_Click(object sender, EventArgs e)
+        {
+            //rents join cu bookid name title order by bookid
+            VeziInchirieri vz = new VeziInchirieri();
+            vz.Show();
+        }
+
+        private void buttonVeziAllRents_Click(object sender, EventArgs e)
+        {
+            VeziToateInchirierile vzt = new VeziToateInchirierile();
+            vzt.Show();
         }
     }
 }
