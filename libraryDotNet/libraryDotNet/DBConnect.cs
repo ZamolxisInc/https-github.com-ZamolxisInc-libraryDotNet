@@ -44,7 +44,7 @@ namespace libraryDotNet
             }
             catch (MySqlException ex)
             {
-                
+
                 //0: Cannot connect to server.
                 //1045: Invalid user name and/or password.
                 switch (ex.Number)
@@ -80,7 +80,7 @@ namespace libraryDotNet
         public bool AdaugaCarte(string bookID, string title, string author, string total, string details)
         {
             int LocalEntryID = entryIdGenerator();
-            string query = "INSERT INTO books (entryID, bookID, title, author, total, free, details) VALUES('"+LocalEntryID+"', '" + bookID + "', '" + title + "', '" + author + "', '" + total + "', '" + total + "', '" + details + "')";
+            string query = "INSERT INTO books (entryID, bookID, title, author, total, free, details) VALUES('" + LocalEntryID + "', '" + bookID + "', '" + title + "', '" + author + "', '" + total + "', '" + total + "', '" + details + "')";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -115,12 +115,29 @@ namespace libraryDotNet
                 cmd.ExecuteNonQuery();
                 //close connection
                 this.CloseConnection();
-            
+
                 return true;
 
             }
             return false;
         }
+
+        public bool ReturnBook(string bookID, string nume, string clasa)
+        {
+            string query = "UPDATE rents SET returned=true WHERE bookID = '" + bookID + "' AND LOWER(nume) LIKE '" + nume + "' AND LOWER(clasa) LIKE '" + clasa + "'";
+            if(this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                cmd.ExecuteNonQuery();
+
+                this.CloseConnection();
+
+                return true;
+            }
+            return false;
+        }
+
         public bool setMinusOneFreeBook(string bookID)
         {
 
@@ -143,6 +160,27 @@ namespace libraryDotNet
             return false;
         }
 
+        public bool setPlusOneFreeBook(string bookID)
+        {
+
+            string query = "UPDATE books SET free=free+1 WHERE bookID = '" + bookID + "'";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+                //close connection
+                this.CloseConnection();
+
+                return true;
+
+            }
+            return false;
+        }
 
 
         public bool StergeCarte(string bookID)

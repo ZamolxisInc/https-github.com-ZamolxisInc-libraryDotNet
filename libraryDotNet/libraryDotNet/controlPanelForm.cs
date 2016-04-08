@@ -81,7 +81,8 @@ namespace libraryDotNet
 
         private void buttonReturneazaCarte_Click(object sender, EventArgs e)
         {
-
+            Form reutrneazaCarte = new ReturneazaCarte();
+            reutrneazaCarte.Show();
         }
 
         private void buttonCautCarte_Click(object sender, EventArgs e)
