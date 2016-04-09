@@ -15,7 +15,6 @@ D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\bin\Debug\System.Net.
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\bin\Debug\Newtonsoft.Json.dll
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\bin\Debug\System.Net.Http.Formatting.xml
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\bin\Debug\Newtonsoft.Json.xml
-D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\bin\Debug\MySql.Data.dll
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\obj\Debug\libraryDotNet.CautaCarte.resources
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\obj\Debug\libraryDotNet.InchiriazaCarte.resources
 D:\Gabi\projects\libraryDotNet\libraryDotNet\libraryDotNet\obj\Debug\libraryDotNet.VeziInchirieri.resources

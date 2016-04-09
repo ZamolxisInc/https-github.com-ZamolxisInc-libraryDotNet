@@ -64,7 +64,10 @@ namespace libraryDotNet
 
         private void returneazaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //the code for return
+            ListViewItem it = new ListViewItem();
+            it = listView1.SelectedItems[0];
+            ReturneazaCarte veziinchform = new ReturneazaCarte(it.SubItems[1].Text, it.SubItems[4].Text, it.SubItems[6].Text);
+            veziinchform.Show();
         }
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
