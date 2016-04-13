@@ -53,6 +53,7 @@
             this.buttonVeziToateCartile = new System.Windows.Forms.Button();
             this.buttonVeziToateCartileNereturnate = new System.Windows.Forms.Button();
             this.buttonVeziAllRents = new System.Windows.Forms.Button();
+            this.buttonBackup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cautaCarteGroup.SuspendLayout();
             this.trayIconMenuStrip.SuspendLayout();
@@ -269,11 +270,22 @@
             this.buttonVeziAllRents.UseVisualStyleBackColor = true;
             this.buttonVeziAllRents.Click += new System.EventHandler(this.buttonVeziAllRents_Click);
             // 
+            // buttonBackup
+            // 
+            this.buttonBackup.Location = new System.Drawing.Point(12, 397);
+            this.buttonBackup.Name = "buttonBackup";
+            this.buttonBackup.Size = new System.Drawing.Size(169, 33);
+            this.buttonBackup.TabIndex = 11;
+            this.buttonBackup.Text = "Arhivare siguranta";
+            this.buttonBackup.UseVisualStyleBackColor = true;
+            this.buttonBackup.Click += new System.EventHandler(this.buttonBackup_Click);
+            // 
             // controlPanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 587);
+            this.Controls.Add(this.buttonBackup);
             this.Controls.Add(this.buttonVeziAllRents);
             this.Controls.Add(this.buttonVeziToateCartileNereturnate);
             this.Controls.Add(this.buttonVeziToateCartile);
@@ -328,6 +340,7 @@
         private System.Windows.Forms.Button buttonVeziToateCartile;
         private System.Windows.Forms.Button buttonVeziToateCartileNereturnate;
         private System.Windows.Forms.Button buttonVeziAllRents;
+        private System.Windows.Forms.Button buttonBackup;
     }
 }
 

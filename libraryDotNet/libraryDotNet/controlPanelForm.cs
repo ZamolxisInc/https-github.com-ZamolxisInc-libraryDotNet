@@ -157,5 +157,11 @@ namespace libraryDotNet
         {
             Log lg = new Log("Programul a fost inchis;");
         }
+
+        private void buttonBackup_Click(object sender, EventArgs e)
+        {
+            DBConnect fb = new DBConnect();
+            fb.Backup();
+        }
     }
 }
