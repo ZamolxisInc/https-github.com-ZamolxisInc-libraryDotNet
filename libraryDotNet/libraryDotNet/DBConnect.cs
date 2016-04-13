@@ -124,7 +124,7 @@ namespace libraryDotNet
 
         public bool ReturnBook(string bookID, string nume, string clasa)
         {
-            string query = "UPDATE rents SET returned='1', backDate = date(now())am  WHERE bookID = '" + bookID + "' AND nume LIKE '%" + nume + "%' AND clasa LIKE '%" + clasa + "%'";
+            string query = "UPDATE rents SET returned='1', backDate = date(now()) WHERE bookID = '" + bookID + "' AND nume LIKE '%" + nume + "%' AND clasa LIKE '%" + clasa + "%'";
             if(this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
