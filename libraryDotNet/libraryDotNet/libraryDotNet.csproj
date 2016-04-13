@@ -50,7 +50,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>zamolxisIco.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data">
@@ -100,14 +103,13 @@
     <Compile Include="InchiriazaCarte.Designer.cs">
       <DependentUpon>InchiriazaCarte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carte.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="controlPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="controlPanelForm.Designer.cs">
       <DependentUpon>controlPanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rent.cs" />
     <Compile Include="ModificaCarte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +187,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Wolf alb.ico" />
     <Content Include="zamolxisIco.ico" />
   </ItemGroup>
   <ItemGroup>

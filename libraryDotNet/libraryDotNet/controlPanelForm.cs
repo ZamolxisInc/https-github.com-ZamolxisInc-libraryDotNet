@@ -23,7 +23,7 @@ namespace libraryDotNet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Log lg = new Log("Programul a fost pornit!");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,6 +32,8 @@ namespace libraryDotNet
             if (dialogResult == DialogResult.Yes)
             {
                 Environment.Exit(0);
+                Log log = new Log("Programul a fost inchis natural din panoul de control. Exit code 0");
+                 
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -144,6 +146,16 @@ namespace libraryDotNet
         {
             VeziToateInchirierile vzt = new VeziToateInchirierile();
             vzt.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://zamolxisinc.github.io/Website-1.0/");
+        }
+
+        private void controlPanelForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Log lg = new Log("Programul a fost inchis;");
         }
     }
 }

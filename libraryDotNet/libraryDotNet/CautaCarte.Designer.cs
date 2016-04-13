@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CautaCarte));
             this.listView1 = new System.Windows.Forms.ListView();
             this.contextMenuRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editeazaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +85,7 @@
             this.ClientSize = new System.Drawing.Size(940, 488);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CautaCarte";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

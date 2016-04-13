@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VeziInchirieri));
             this.listView1 = new System.Windows.Forms.ListView();
             this.RightClickmenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.returneazaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,7 @@
             // returneazaToolStripMenuItem
             // 
             this.returneazaToolStripMenuItem.Name = "returneazaToolStripMenuItem";
-            this.returneazaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.returneazaToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.returneazaToolStripMenuItem.Text = "Returneaza";
             this.returneazaToolStripMenuItem.Click += new System.EventHandler(this.returneazaToolStripMenuItem_Click);
             // 
@@ -65,6 +66,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 490);
             this.Controls.Add(this.listView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VeziInchirieri";
             this.Text = "VeziInchirieri";
             this.Load += new System.EventHandler(this.VeziInchirieri_Load);

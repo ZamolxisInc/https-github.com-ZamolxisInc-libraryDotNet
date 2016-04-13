@@ -40,6 +40,7 @@ namespace libraryDotNet
             try
             {
                 connection.Open();
+                Log lg = new Log("Conectat cu succes la baza de date");
                 return true;
             }
             catch (MySqlException ex)
@@ -50,11 +51,13 @@ namespace libraryDotNet
                 switch (ex.Number)
                 {
                     case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        MessageBox.Show("Imposibil de conectat la baza de date");
+                        Log lg = new Log("Imposibil de conectat la baza de date");
                         break;
 
                     case 1045:
                         MessageBox.Show("Invalid username/password, please try again");
+                        Log lg2 = new Log("Uss/Psw pentru baza de date sunt incorecte");
                         break;
                 }
                 return false;
@@ -67,11 +70,13 @@ namespace libraryDotNet
             try
             {
                 connection.Close();
+                Log lg = new Log("Conexiunea cu baza de date a fost inchisa cu succes");
                 return true;
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                Log lg = new Log(ex.Message.ToString());
                 return false;
             }
         }
@@ -91,11 +96,14 @@ namespace libraryDotNet
                 //Execute command
                 cmd.ExecuteNonQuery();
                 //close connection
+                Log lg = new Log("O carte a fost adaugata cu succes: entryID:" + LocalEntryID + ";bookId:" + bookID + ";title:" + title + ";author:" + author + ";total:" + total + ";details:" + details + ";");
                 this.CloseConnection();
                 MessageBox.Show("Cartea a fost adaugata cu succes!");
-                return true;
+                 return true;
 
             }
+            Log lg2 = new Log("O carte NU fost adaugata cu succes: entryID:" + LocalEntryID + ";bookId:" + bookID + ";title:" + title + ";author:" + author + ";total:" + total + ";details:" + details + ";");
+               
             return false;
         }
 
@@ -114,11 +122,14 @@ namespace libraryDotNet
                 //Execute command
                 cmd.ExecuteNonQuery();
                 //close connection
+                
+                Log lg = new Log("O carte a fost inchiriata cu succes: bookId:" + bookID + ";nume:" + nume + ";prenume:" + prenume + ";clasa:" + clasa + ";");
                 this.CloseConnection();
-
                 return true;
 
             }
+            Log lg2 = new Log("O carte NU a fost inchiriata cu succes: bookId:" + bookID + ";nume:" + nume + ";prenume:" + prenume + ";clasa:" + clasa + ";");
+               
             return false;
         }
 
@@ -131,10 +142,12 @@ namespace libraryDotNet
 
                 cmd.ExecuteNonQuery();
 
+                
+                Log lg = new Log("O carte a fost returnata cu succes: bookId:" + bookID + ";nume:" + nume + ";clasa:" + clasa + ";");
                 this.CloseConnection();
-
                 return true;
             }
+            Log lg2 = new Log("O carte NU a fost returnata cu succes: bookId:" + bookID + ";nume:" + nume + ";clasa:" + clasa + ";");
             return false;
         }
 
@@ -152,12 +165,14 @@ namespace libraryDotNet
                 //Execute command
                 cmd.ExecuteNonQuery();
                 //close connection
+               
+                Log lg = new Log("Numar de carti libere a scazut cu una pentru: bookId:" + bookID + ";");
                 this.CloseConnection();
-         
                 return true;
 
             }
             return false;
+            Log lg2 = new Log("Numar de carti libere NU a scazut cu una pentru: bookId:" + bookID + ";");
         }
 
         public bool setPlusOneFreeBook(string bookID)
@@ -174,11 +189,14 @@ namespace libraryDotNet
                 //Execute command
                 cmd.ExecuteNonQuery();
                 //close connection
+               
+                Log lg = new Log("Numar de carti libere a crescut cu una pentru: bookId:" + bookID + ";");
                 this.CloseConnection();
-
                 return true;
 
             }
+            Log lg2 = new Log("Numar de carti libere NU a crescut cu una pentru: bookId:" + bookID + ";");
+            
             return false;
         }
 
@@ -191,10 +209,13 @@ namespace libraryDotNet
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
-                this.CloseConnection();
+                
                 MessageBox.Show("Cartea a fost stearsa cu succes!");
+                Log lg = new Log("Cartea a fost stearsa: bookId:" + bookID + ";");
+                this.CloseConnection();
                 return true;
             }
+            Log lg2 = new Log("Cartea NU a fost stearsa: bookId:" + bookID + ";");
             return false;
         }
 
@@ -225,6 +246,7 @@ namespace libraryDotNet
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    Log lg = new Log("S-au afisat toate cartile;");
                     list[0].Add(dataReader["entryID"] + "");
                     list[1].Add(dataReader["bookID"] + "");
                     list[2].Add(dataReader["title"] + "");
@@ -239,7 +261,7 @@ namespace libraryDotNet
 
                 //close Connection
                 this.CloseConnection();
-
+               
                 //return list to be displayed
                 return list;
             }
@@ -254,7 +276,7 @@ namespace libraryDotNet
         public List<string>[] CautaCarte(string bookID, string title, string author)
         {
             string query = "SELECT * FROM books WHERE (bookID LIKE '%"+bookID+"%' OR title LIKE '%"+title+"%' OR author LIKE '%"+author+"%')";
-
+           
             //Create a list to store the result
             List<string>[] list = new List<string>[7];
             list[0] = new List<string>();
@@ -276,6 +298,7 @@ namespace libraryDotNet
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    
                     list[0].Add(dataReader["entryID"] + "");
                     list[1].Add(dataReader["bookID"] + "");
                     list[2].Add(dataReader["title"] + "");
@@ -287,7 +310,7 @@ namespace libraryDotNet
 
                 //close Data Reader
                 dataReader.Close();
-
+                Log lg = new Log("S-a cautat cartea: bookid:" + bookID + ";title:" + title + ";author:" + author + ";");
                 //close Connection
                 this.CloseConnection();
 
@@ -304,7 +327,7 @@ namespace libraryDotNet
         public List<string>[] CartiInchiriate(string bookID)
         {
             string query = "SELECT * FROM rents RIGHT OUTER JOIN books ON rents.bookID = books.bookID WHERE (rents.bookID LIKE '%"+bookID+"%' AND rents.returned = '0') ORDER BY books.bookID";
-
+            
             //Create a list to store the result
             List<string>[] list = new List<string>[14];
             list[0] = new List<string>();
@@ -333,6 +356,7 @@ namespace libraryDotNet
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    
                     list[0].Add(dataReader["bookID"] + "");
                     list[1].Add(dataReader["nume"] + "");
                     list[2].Add(dataReader["prenume"] + "");
@@ -351,7 +375,7 @@ namespace libraryDotNet
 
                 //close Data Reader
                 dataReader.Close();
-
+                Log lg = new Log("S-au afisat cartile inchiriate pentu bookId:" + bookID + ";");
                 //close Connection
                 this.CloseConnection();
 
@@ -367,7 +391,7 @@ namespace libraryDotNet
         public List<string>[] ToateCartileInchiriate()
         {
             string query = "SELECT * FROM rents RIGHT OUTER JOIN books ON rents.bookID = books.bookID WHERE (rents.bookID IS NOT NULL) ORDER BY backDate DESC";
-
+           
             //Create a list to store the result
             List<string>[] list = new List<string>[14];
             list[0] = new List<string>();
@@ -396,6 +420,7 @@ namespace libraryDotNet
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    
                     list[0].Add(dataReader["bookID"] + "");
                     list[1].Add(dataReader["nume"] + "");
                     list[2].Add(dataReader["prenume"] + "");
@@ -414,7 +439,7 @@ namespace libraryDotNet
 
                 //close Data Reader
                 dataReader.Close();
-
+                Log lg = new Log("S-au afisat toate cartile inchiriate;");
                 //close Connection
                 this.CloseConnection();
 
@@ -444,12 +469,16 @@ namespace libraryDotNet
 
                 //Execute query
                 cmd.ExecuteNonQuery();
-
+                Log lg = new Log("O carte a fost modificata cu succes bookId:" + bookID + ";title:" + title + ";author:" + author + ";total:" + total + ";details:" + details + ";");
+                
                 //close connection
                 this.CloseConnection();
                 MessageBox.Show("Cartea a fost modificata cu succes!");
+                
                 return true;
             }
+            Log lg2 = new Log("O carte NU a fost modificata cu succes bookId:" + bookID + ";title:" + title + ";author:" + author + ";total:" + total + ";details:" + details + ";");
+                
             return false;
         }
 
@@ -469,8 +498,10 @@ namespace libraryDotNet
                 Count = int.Parse(cmd.ExecuteScalar() + "");
 
                 //close Connection
+                Log lg = new Log("S-a generat maxEntryID+1=" + (Count + 1).ToString() + ";");
                 this.CloseConnection();
-
+                
+                
                 return Count + 1;
             }
             else
@@ -496,6 +527,7 @@ namespace libraryDotNet
                 Count = int.Parse(cmd.ExecuteScalar() + "");
 
                 //close Connection
+                Log lg = new Log("S-a verificat daca exista bookid:" + bookID +";count:"+Count+";");
                 this.CloseConnection();
 
                 return Count;
@@ -521,7 +553,7 @@ namespace libraryDotNet
 
                 //ExecuteScalar will return one value
                 Count = int.Parse(cmd.ExecuteScalar() + "");
-
+                Log lg = new Log("S-a verificat numarul de carti libere pentru bookid:" + bookID + ";count:" + Count + ";");
                 //close Connection
                 this.CloseConnection();
 

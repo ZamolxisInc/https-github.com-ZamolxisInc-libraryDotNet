@@ -61,18 +61,19 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(834, 439);
+            this.pictureBox1.Location = new System.Drawing.Point(841, 532);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(166, 126);
+            this.pictureBox1.Size = new System.Drawing.Size(163, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 552);
+            this.label1.Location = new System.Drawing.Point(885, 568);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 1;
@@ -154,7 +155,7 @@
             // 
             // buttonInchiriazaCarte
             // 
-            this.buttonInchiriazaCarte.Location = new System.Drawing.Point(31, 243);
+            this.buttonInchiriazaCarte.Location = new System.Drawing.Point(12, 243);
             this.buttonInchiriazaCarte.Name = "buttonInchiriazaCarte";
             this.buttonInchiriazaCarte.Size = new System.Drawing.Size(169, 71);
             this.buttonInchiriazaCarte.TabIndex = 3;
@@ -164,7 +165,7 @@
             // 
             // buttonReturneazaCarte
             // 
-            this.buttonReturneazaCarte.Location = new System.Drawing.Point(31, 350);
+            this.buttonReturneazaCarte.Location = new System.Drawing.Point(12, 320);
             this.buttonReturneazaCarte.Name = "buttonReturneazaCarte";
             this.buttonReturneazaCarte.Size = new System.Drawing.Size(169, 71);
             this.buttonReturneazaCarte.TabIndex = 4;
@@ -194,9 +195,9 @@
             // 
             // groupStatistici
             // 
-            this.groupStatistici.Location = new System.Drawing.Point(357, 243);
+            this.groupStatistici.Location = new System.Drawing.Point(220, 243);
             this.groupStatistici.Name = "groupStatistici";
-            this.groupStatistici.Size = new System.Drawing.Size(449, 312);
+            this.groupStatistici.Size = new System.Drawing.Size(586, 312);
             this.groupStatistici.TabIndex = 7;
             this.groupStatistici.TabStop = false;
             this.groupStatistici.Text = "Statistici";
@@ -290,6 +291,7 @@
             this.Name = "controlPanelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "libraryDotNet v1.0";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.controlPanelForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.controlPanelForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
